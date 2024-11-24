@@ -10,7 +10,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "../../../components/ui/button";
 
-export default function AddNewBlog({ openBlogDialog, setOpenBlogDialog }) {
+export default function AddNewBlog({
+  openBlogDialog,
+  setOpenBlogDialog,
+  loading,
+  setLoading,
+  blogFormData,
+  setBlogFormData,
+}) {
   return (
     <Fragment>
       <div>
@@ -28,7 +35,14 @@ export default function AddNewBlog({ openBlogDialog, setOpenBlogDialog }) {
               </Label>
               <Input
                 id="title"
-                defaultValue="Pedro Duarte"
+                name="title"
+                onChange={(event) =>
+                  setBlogFormData({
+                    ...blogFormData,
+                    title: event.target.value,
+                  })
+                }
+                value={blogFormData.title}
                 className="col-span-3"
               />
             </div>
@@ -38,7 +52,14 @@ export default function AddNewBlog({ openBlogDialog, setOpenBlogDialog }) {
               </Label>
               <Input
                 id="description"
-                defaultValue="@peduarte"
+                name="description"
+                value={blogFormData.description}
+                onChange={(event) =>
+                  setBlogFormData({
+                    ...blogFormData,
+                    description: event.target.value,
+                  })
+                }
                 className="col-span-3"
               />
             </div>
